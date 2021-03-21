@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 // import movieApi from '../services/movieApi';
 import axios from 'axios';
 import Cast from '../components/Cast';
@@ -34,6 +34,7 @@ class MovieDetailsPage extends Component {
   }
 
   render() {
+    console.log(this.props.match.path);
     const {
       backdrop_path,
       original_title,
@@ -41,6 +42,7 @@ class MovieDetailsPage extends Component {
       overview,
       release_date,
     } = this.state;
+
     return (
       <>
         <h1>Это страница фильма {this.props.match.params.movieId}</h1>
@@ -48,9 +50,13 @@ class MovieDetailsPage extends Component {
         <h2>{original_title || title}</h2>
         <p>{overview}</p>
         <p>{release_date}</p>
+        <NavLink to={`${this.props.match.url}/cast`}>
+          <p>Cast</p>
+        </NavLink>
+
         <Route
-          path={`${this.props.match.path}`}
-          render={props => <Cast {...props} />}
+          path={`${this.props.match.path}/cast`}
+          render={() => <h1>Страница актеров</h1>}
         />
         <Route path={`${this.props.match.path}`} component={Reviews} />
       </>
@@ -59,11 +65,3 @@ class MovieDetailsPage extends Component {
 }
 
 export default MovieDetailsPage;
-
-{
-  /* <Route
-          path={`${this.props.match.path}`}
-          render={props => <Cast {...props} />}
-        />
-        <Route path={`${this.props.match.path}`} component={Reviews} /> */
-}

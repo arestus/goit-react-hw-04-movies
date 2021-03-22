@@ -18,10 +18,9 @@ class Reviews extends Component {
     this.setState({ ...response.data });
   }
   render() {
-    // const { name, profile_path, character } = this.state;
     return (
       <>
-        (<h1>Компонент рецензий</h1>
+        <h1>Компонент рецензий</h1>
         <ul>
           {this.state.results.map(review => (
             <li key={review.id}>

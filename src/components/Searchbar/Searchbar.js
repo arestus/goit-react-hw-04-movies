@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import s from './Searchbar.module.css';
 
 class SearchBar extends Component {
   state = { query: '' };
@@ -18,7 +19,9 @@ class SearchBar extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <button type="submit">Search</button>
+        <button type="submit" className={s.button}>
+          Search
+        </button>
 
         <input
           type="text"

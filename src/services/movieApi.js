@@ -5,20 +5,21 @@ const API_KEY = '?api_key=a74414b944f8b513109b376ad415325e';
 
 const fetchMovies = () => {
   return axios.get(`trending/movie/day${API_KEY}`);
-  // .then(response => response.data.results);
 };
 
-const fetchSearch = ({ searchQuery = '', currentPage = 1 }) => {
-  return axios
-    .get(
-      `search/movie${API_KEY}&language=en-US&page=${currentPage}&include_adult=false&query=${searchQuery}`,
-    )
-    .then(response => response.data.results);
+const fetchSearch = ({ searchQuery = '' }) => {
+  return axios.get(
+    `search/movie${API_KEY}&language=en-US&include_adult=false&query=${searchQuery}`,
+  );
+};
+
+const fetchMovie = movieId => {
+  return axios.get(`movie/${movieId}images${API_KEY}&language=en-US`);
 };
 
 const movieApi = {
   fetchMovies,
   fetchSearch,
-  // fetchMovie,
+  fetchMovie,
 };
 export default movieApi;
